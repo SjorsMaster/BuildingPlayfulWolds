@@ -31,7 +31,6 @@ public class PlayerMovement : MonoBehaviour
     int _range = 90;
     //
 
-
     //Prepare stuff
     private void Awake()
     {
@@ -41,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     //Look at input, do stuff based on that
-    private void Update()
+    private void FixedUpdate()
     {
         _head.transform.localEulerAngles = new Vector3(0 - _cameraPlayer.transform.localEulerAngles.x, 0, 0 - _cameraPlayer.transform.localEulerAngles.z);
 
@@ -104,6 +103,6 @@ public class PlayerMovement : MonoBehaviour
     {
         int layerMask = 1 << 8;
         layerMask = ~layerMask;
-        return (Physics.Raycast(position/* + transform.up * ((transform.localScale.y / 2) + _rayOffset)*/, _head.transform.TransformDirection(direction), _rcLength * 1.15f, layerMask) || Physics.Raycast(position - (transform.up * ((transform.localScale.y / 2))), _head.transform.TransformDirection(direction), _rcLength * 1.15f, layerMask)) || Physics.Raycast(position - (transform.up * (transform.localScale.y)), _head.transform.TransformDirection(direction), _rcLength * 0.8f, layerMask);
+        return (Physics.Raycast(position, _head.transform.TransformDirection(direction), _rcLength * 1.15f, layerMask) || Physics.Raycast(position - (transform.up * ((transform.localScale.y / 2))), _head.transform.TransformDirection(direction), _rcLength * 1.15f, layerMask)) || Physics.Raycast(position - (transform.up * (transform.localScale.y)), _head.transform.TransformDirection(direction), _rcLength * 0.8f, layerMask);
     }
 }
