@@ -42,6 +42,11 @@ public class PlayerMovement : MonoBehaviour
     //Look at input, do stuff based on that
     private void FixedUpdate()
     {
+        MovePlayer();
+    }
+
+    private void Update()
+    {
         _head.transform.localEulerAngles = new Vector3(0 - _cameraPlayer.transform.localEulerAngles.x, 0, 0 - _cameraPlayer.transform.localEulerAngles.z);
 
         _lookDir += new Vector3(_playerLooking.x, _playerLooking.y);
@@ -49,7 +54,6 @@ public class PlayerMovement : MonoBehaviour
         _cameraPlayer.transform.localRotation = Quaternion.Euler(_lookDir.y, _lookDir.x, 0);
 
         _speedMod = _sprinting ? _sprintSpeed : _defaultSpeed;
-        MovePlayer();
     }
 
     //Walking variables
